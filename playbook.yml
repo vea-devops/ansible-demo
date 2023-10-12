@@ -1,0 +1,21 @@
+---
+
+- hosts: localhost
+  connection: local
+  become: true
+  vars:
+    petclinic_docker_image: "springcommunity/spring-framework-petclinic"
+    java_packages:
+      - java-1.8.0-openjdk-devel.x86_64
+
+  roles:
+    - role: geerlingguy.java
+      tags: ec2
+    - role: deploy_petclinic
+      tags: ec2
+    - role: deploy_docker_petclinic
+      tags: docker
+    - role: remove_petclinic
+      tags: clean_ec2_petclinic
+    - role: remove_docker_petclinic
+      tags: clean_docker_petclinic

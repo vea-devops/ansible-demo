@@ -1,0 +1,30 @@
+- name: Install and upgrade pip
+  pip:
+    name: pip
+    extra_args: --upgrade
+    executable: pip3
+- name: Install Docker package with pip
+  pip:
+    name: docker
+    executable: pip3
+- name: Install Docker
+  command: amazon-linux-extras install docker -y
+- name: Enable and start docker.service
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+- name: log into Dockerhub
+  docker_login:
+    username: "{{ dockerhub_username }}" # tiek padots izpildot playbook
+    password: "{{ dockerhub_password }}" # tiek padots izpildot playbook
+  vars:
+    ansible_python_interpreter: "/usr/bin/python3"
+- name: deploy petclinic docker container
+  docker_container:
+    name: petclinic
+    image: "{{ petclinic_docker_image }}"
+    ports:
+      - "80:8080"
+  vars:
+    ansible_python_interpreter: "/usr/bin/python3"

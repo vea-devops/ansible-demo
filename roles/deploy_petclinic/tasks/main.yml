@@ -1,0 +1,23 @@
+- name: Install dependency packages
+  yum:
+    name: ['git', 'awscli']
+    state: latest
+- name: create workdir
+  file:
+    path: "/opt/spring-petclinic"
+    state: directory
+- name: clone petclinic repo
+  git:
+    repo: "https://github.com/spring-projects/spring-petclinic.git"
+    dest: "/opt/spring-petclinic"
+    version: "main"
+- name: build petclinic
+  shell: "./mvnw package"
+  args:
+    chdir: "/opt/spring-petclinic"
+    creates: "/opt/spring-petclinic/target/spring-petclinic-2.5.0-SNAPSHOT.jar"
+- name: deploy petclinic
+  shell: "touch target/deployed && nohup java -jar target/*.jar &"
+  args:
+    chdir: "/opt/spring-petclinic"
+    creates: "/opt/spring-petclinic/target/deployed"

@@ -1,0 +1,6 @@
+- name: kill any running petclinic processes
+  shell: "pkill -f spring-petclinic"
+- name: delete spring-petclinic repo
+  file:
+    path: "/opt/spring-petclinic"
+    state: absent

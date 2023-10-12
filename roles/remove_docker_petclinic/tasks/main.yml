@@ -1,0 +1,17 @@
+- name: stop petclinic docker container
+  docker_container:
+    name: petclinic
+    state: absent
+  vars:
+    ansible_python_interpreter: "/usr/bin/python3"
+- name: remove petclinic docker image
+  docker_image:
+    state: absent
+    name: "{{ petclinic_docker_image }}"
+  vars:
+    ansible_python_interpreter: "/usr/bin/python3"
+- name: log out of Dockerhub
+  docker_login:
+    state: absent
+  vars:
+    ansible_python_interpreter: "/usr/bin/python3"
