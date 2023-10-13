@@ -2,5 +2,5 @@
   shell: "pkill -f spring-petclinic"
 - name: delete spring-petclinic repo
   file:
-    path: "/opt/spring-petclinic"
+    path: "/home/ssm-user/spring-petclinic"
     state: absent

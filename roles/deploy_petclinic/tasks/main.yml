@@ -4,20 +4,20 @@
     state: latest
 - name: create workdir
   file:
-    path: "/opt/spring-petclinic"
+    path: "/home/ssm-user/spring-petclinic"
     state: directory
 - name: clone petclinic repo
   git:
     repo: "https://github.com/spring-projects/spring-petclinic.git"
-    dest: "/opt/spring-petclinic"
+    dest: "/home/ssm-user/spring-petclinic"
     version: "main"
 - name: build petclinic
   shell: "./mvnw package"
   args:
-    chdir: "/opt/spring-petclinic"
-    creates: "/opt/spring-petclinic/target/spring-petclinic-3.1.0-SNAPSHOT.jar"
+    chdir: "/home/ssm-user/spring-petclinic"
+    creates: "/home/ssm-user/spring-petclinic/target/spring-petclinic-3.1.0-SNAPSHOT.jar"
 - name: deploy petclinic
   shell: "touch target/deployed && nohup java -jar target/*.jar &"
   args:
-    chdir: "/opt/spring-petclinic"
-    creates: "/opt/spring-petclinic/target/deployed"
+    chdir: "/home/ssm-user/spring-petclinic"
+    creates: "/home/ssm-user/spring-petclinic/target/deployed"
