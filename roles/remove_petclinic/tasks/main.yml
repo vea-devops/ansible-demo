@@ -1,5 +1,5 @@
 - name: kill any running petclinic processes
-  shell: "pkill -9 -f spring-petclinic"
+  shell: "pkill -9 $(pgrep test) || echo"
 - name: delete spring-petclinic repo
   file:
     path: "/home/ssm-user/spring-petclinic"
