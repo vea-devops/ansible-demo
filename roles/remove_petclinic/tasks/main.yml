@@ -1,7 +1,7 @@
 - name: Get Petclinic ID (PID)
-    pids:
-      name: spring-petclinic
-    register: PID
+  pids:
+    name: spring-petclinic
+  register: PID
 - name: kill any running petclinic processes
   shell: "kill -9 {{ PID.pids | first }}"
 - name: delete spring-petclinic repo
