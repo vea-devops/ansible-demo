@@ -1,9 +1,5 @@
-- name: Get Petclinic ID (PID)
-  pids:
-    name: spring-petclinic
-  register: PID
 - name: kill any running petclinic processes
-  shell: "kill -9 {{ PID.pids | first }}"
+  shell: "pkill -9 -f spring-petclinic"
 - name: delete spring-petclinic repo
   file:
     path: "/home/ssm-user/spring-petclinic"
