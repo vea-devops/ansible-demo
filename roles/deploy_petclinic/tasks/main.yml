@@ -15,7 +15,7 @@
   shell: "./mvnw package"
   args:
     chdir: "/home/ssm-user/spring-petclinic"
-    creates: "/home/ssm-user/spring-petclinic/target/spring-petclinic-3.1.0-SNAPSHOT.jar"
+    creates: "/home/ssm-user/spring-petclinic/target/spring-petclinic-3.3.0-SNAPSHOT.jar"
 - name: deploy petclinic
   shell: "touch target/deployed && nohup java -jar target/*.jar &"
   args:
