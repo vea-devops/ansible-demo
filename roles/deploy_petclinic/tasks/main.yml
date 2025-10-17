@@ -1,6 +1,6 @@
 - name: Install dependency packages
   apt:
-    name: ['git', 'awscli']
+    name: ['git', 'awscli', 'maven']
     state: latest
 - name: create workdir
   file:
@@ -12,10 +12,10 @@
     dest: "/home/ssm-user/spring-petclinic"
     version: "main"
 - name: build petclinic
-  shell: "./mvnw package"
+  shell: "mvn package"
   args:
     chdir: "/home/ssm-user/spring-petclinic"
-    creates: "/home/ssm-user/spring-petclinic/target/spring-petclinic-3.3.0-SNAPSHOT.jar"
+    creates: "/home/ssm-user/spring-petclinic/target/spring-petclinic-4.0.0-SNAPSHOT.jar"
 - name: deploy petclinic
   shell: "touch target/deployed && nohup java -jar target/*.jar &"
   args:
