@@ -6,7 +6,7 @@
   vars:
     petclinic_docker_image: "springcommunity/spring-framework-petclinic"
     java_packages:
-      - openjdk-19-jre-headless
+      - openjdk-25-jre-headless
 
   roles:
     - role: geerlingguy.java
